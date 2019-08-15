@@ -10,12 +10,12 @@
       const { createElement, Component } = React;
       const { render } = ReactDOM;
 
-      const Nav = ()=> {
+      const Nav = ({companies, products })=> {
         return createElement(
           'div',
           { className: 'nav'},
-          createElement('a', { href : '#companies'}, 'Companies'),
-          createElement('a', { href : '#products'}, 'Products')
+          createElement('a', { href : '#companies'}, `Companies (${companies.length})`),
+          createElement('a', { href : '#products'}, `Products (${products.length})`)
         );
       };
 
@@ -45,12 +45,12 @@
           const [companies, products] = responses.map(response=> response.data);
 
           this.setState({companies: companies, products: products});
-          console.log(this.state)
+
         }
 
         render(){
           const { companies, products, view } = this.state;
-          const nav = createElement(Nav);
+          const nav = createElement(Nav,{ companies, products });
           return createElement('div', null, nav)
         }
       }
