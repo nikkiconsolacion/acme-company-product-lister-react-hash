@@ -34,7 +34,7 @@
         return createElement('ul', null, lis)
       }
       const Products = ({products})=> {
-        const lis = products.map(product=> createElement('li', { key: product.id }, product.name));
+        const lis = products.map(product=> createElement('li', { key: product.id }, product.name,'-',product.description));
         return createElement('ul', null, lis)
       }
 
