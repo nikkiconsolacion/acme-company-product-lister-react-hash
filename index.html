@@ -57,7 +57,9 @@
           const responses = await Promise.all(urls.map(url=> axios.get(url)));
 
           const [companies, products] = responses.map(response=> response.data);
-
+          if(!window.location.hash.slice(1)){
+            window.location.hash = 'companies';
+          }
           window.addEventListener('hashchange', (ev)=>{
             const view = window.location.hash.slice(1);
             this.setState({view})
