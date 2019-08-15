@@ -25,6 +25,7 @@
       }
 
       class App extends Component {
+
         constructor(){
           super();
           this.state = {
@@ -33,6 +34,12 @@
             view: window.location.hash.slice(1)
           }
         }
+
+        async componentDidMount(){
+          const urls = [ ];
+
+        }
+
         render(){
           const { companies, products, view } = this.state;
           const nav = createElement(Nav);
