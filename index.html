@@ -36,8 +36,16 @@
         }
 
         async componentDidMount(){
-          const urls = [ ];
+          const urls = [
+            'https://acme-users-api-rev.herokuapp.com/api/companies',
+            'https://acme-users-api-rev.herokuapp.com/api/products'
+          ];
+          const responses = await Promise.all(urls.map(url=> axios.get(url)));
 
+          const [companies, products] = responses.map(response=> response.data);
+
+          this.setState({companies: companies, products: products});
+          console.log(this.state)
         }
 
         render(){
