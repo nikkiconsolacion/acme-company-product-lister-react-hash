@@ -19,8 +19,8 @@
         );
       };
 
-      const companyList = ()=> {
-
+      const Companies = ({companies})=> {
+        const lis = companies.map(company=> createElement('li', { key: company.id }, company.name));
         return createElement('ul', null, lis)
       }
 
@@ -51,7 +51,8 @@
         render(){
           const { companies, products, view } = this.state;
           const nav = createElement(Nav,{ companies, products });
-          return createElement('div', null, nav)
+          const companyList = createElement(Companies, {companies})
+          return createElement('div', null, nav, companyList)
         }
       }
 
