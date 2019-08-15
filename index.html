@@ -23,6 +23,10 @@
         const lis = companies.map(company=> createElement('li', { key: company.id }, company.name));
         return createElement('ul', null, lis)
       }
+      const Products = ({products})=> {
+        const lis = products.map(product=> createElement('li', { key: product.id }, product.name));
+        return createElement('ul', null, lis)
+      }
 
       class App extends Component {
 
@@ -44,6 +48,11 @@
 
           const [companies, products] = responses.map(response=> response.data);
 
+          window.addEventListener('hashchange', (ev)=>{
+            const view = window.location.hash.slice(1);
+            this.setState({view})
+          });
+
           this.setState({companies: companies, products: products});
 
         }
@@ -51,8 +60,16 @@
         render(){
           const { companies, products, view } = this.state;
           const nav = createElement(Nav,{ companies, products });
-          const companyList = createElement(Companies, {companies})
-          return createElement('div', null, nav, companyList)
+          let chosenView;
+          if(view === 'companies'){
+            chosenView = createElement(Companies, {companies});
+          }
+          if(view === 'products'){
+            chosenView = createElement(Products, {products});
+          }
+          // const companyList = createElement(Companies, {companies});
+          // const productList = createElement(Products, {products});
+          return createElement('div', null, nav, chosenView)
         }
       }
 
