@@ -7,18 +7,30 @@
   <body>
     <div id='root'></div>
     <script>
-      const { render, Component } = React;
-      const { createElement } = ReactDOM;
+      const { createElement, Component } = React;
+      const { render } = ReactDOM;
+
+      const Nav = ()=> {
+        return createElement(
+          'div',
+          { className: 'nav'},
+          createElement('a', { href : '#companies'}, 'companies'),
+          createElement('a', { href : '#products'}, 'products')
+        );
+      }
 
       class App extends Component {
         constructor(){
           super();
           this.state = {
-
+            companies: [],
+            products: [],
+            view: window.location.hash.slice(1)
           }
         }
         render(){
-
+          const nav = createElement(Nav);
+          return createElement('div', null, nav)
         }
       }
 
