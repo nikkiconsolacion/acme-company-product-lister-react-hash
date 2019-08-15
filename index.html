@@ -5,7 +5,9 @@
       <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js'></script>
       <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'></script>
       <style>
-
+        body {
+          font-family: verdana;
+        }
         .nav {
           display: flex;
           justify-content: space-around
@@ -39,7 +41,7 @@
         return createElement('ul', null, lis)
       }
       const Products = ({products})=> {
-        const lis = products.map(product=> createElement('li', { key: product.id }, product.name,'-',product.description));
+        const lis = products.map(product=> createElement('li', { key: product.id }, product.name,' - ',product.description));
         return createElement('ul', null, lis)
       }
 
